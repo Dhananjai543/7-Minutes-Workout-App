@@ -24,14 +24,16 @@
         android:layout_below="@id/toolbar_excercise_activity"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="GET READY FOR"
             android:textColor="@color/colorAccent"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <FrameLayout
             android:layout_width="100dp"
@@ -87,6 +89,22 @@
             android:textStyle="bold"
             android:text="Exercise Name"/>
 
+        <Button
+            android:id="@+id/skipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skip_botton_foreground"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+
+            />
+
 
     </LinearLayout>
 
@@ -104,7 +122,7 @@
         <ImageView
             android:id="@+id/ivImage"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/image"
             android:scaleType="fitXY"
@@ -115,6 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exercise Name"
+            android:layout_marginTop="5dp"
             android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -156,6 +175,14 @@
                     tools:text="10" />
             </LinearLayout>
         </FrameLayout>
+        <Button
+            android:id="@+id/skipExerciseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/skip_botton_foreground"
+            />
+
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExerciseStatus"

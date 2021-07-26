@@ -1,10 +1,13 @@
 package com.example.a7minutesworkoutapp
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_finish.*
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,7 +27,7 @@ class FinishActivity : AppCompatActivity() {
 
         toolbar_finish_activity.setNavigationOnClickListener {
 
-            //this will go t the last activity, but since we finished the exercise activity usinf finish(), it will
+            //this will go to the last activity, but since we finished the exercise activity using finish(), it will
             // go automatically to the home activity and not last exercise activity
             onBackPressed()
         }
@@ -33,6 +36,18 @@ class FinishActivity : AppCompatActivity() {
             finish()
         }
         addDateToHistoryDatabase()
+
+        viewKonfetti.build()
+            .addColors(Color.YELLOW, Color.GREEN, Color.RED)
+            .setDirection(0.0, 359.0)
+            .setSpeed(1f, 5f)
+            .setFadeOutEnabled(true)
+            .setTimeToLive(2000L)
+            .addShapes(Shape.Square, Shape.Circle)
+            .addSizes(Size(12))
+            .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
+            .streamFor(300, 5000L)
+
     }
 
     private fun addDateToHistoryDatabase(){
@@ -46,6 +61,5 @@ class FinishActivity : AppCompatActivity() {
         val dbHandler = SqliteOpenHelper(this,null)
         dbHandler.addDate(date)
         Log.i("DATE->","ADDED")
-
     }
 }

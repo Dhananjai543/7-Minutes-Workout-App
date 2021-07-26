@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/finlayout"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".FinishActivity">
@@ -14,22 +15,32 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="#FFFFFF"/>
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <TextView
         android:id="@+id/tvEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_finish_activity"
         android:layout_marginTop="35dp"
+        android:layout_centerInParent="true"
         android:text="END"
         android:textColor="@color/colorAccent"
         android:textSize="35sp"/>
 
     <LinearLayout
+        android:id="@+id/check"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:background="@drawable/item_circular_color_border"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_below="@id/tvEnd"
+        android:layout_centerInParent="true">
 
         <ImageView
             android:layout_width="50dp"
@@ -40,19 +51,25 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/congtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/congratulations"
         android:textColor="#212121"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_below="@id/check"
+        android:layout_centerInParent="true"/>
 
     <TextView
+        android:id="@+id/congline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/workout_completed"
         android:textColor="#212121"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_below="@id/congtext"
+        android:layout_centerInParent="true"/>
 
     <Button
         android:id="@+id/btnFinish"
@@ -63,5 +80,6 @@
         android:background="@color/colorAccent"
         android:text="@string/finish"
         android:textColor="#FFFFFF"
-        android:textSize="18sp" />
-</LinearLayout>
+        android:textSize="18sp"
+        android:layout_below="@id/congline"/>
+</RelativeLayout>

@@ -3,9 +3,10 @@ package com.example.a7minutesworkoutapp
 class ExerciseModel(
         private var id: Int,
         private var name: String,
-        private var image: Int,
+        private var image: String,
         private var isCompleted: Boolean,
-        private var isSelected: Boolean
+        private var isSelected: Boolean,
+        private var url: String
     )  {
     fun getId() : Int{
         return id
@@ -21,13 +22,10 @@ class ExerciseModel(
         this.name = name
     }
 
-    fun getImage(): Int {
+    fun getImage(): String {
         return image
     }
 
-    fun setImage(image: Int) {
-        this.image = image
-    }
 
     fun getIsCompleted(): Boolean {
         return isCompleted
@@ -43,5 +41,9 @@ class ExerciseModel(
 
     fun setIsSelected(isSelected: Boolean) {
         this.isSelected = isSelected
+    }
+
+    fun getUrl(): String {
+        return url
     }
 }

@@ -1,6 +1,7 @@
 package com.example.a7minutesworkoutapp
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
@@ -10,11 +11,16 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_exercise.*
+import kotlinx.android.synthetic.main.activity_how_to_do.*
 import kotlinx.android.synthetic.main.custom_dialog_back.*
 import java.lang.Exception
 import java.util.*
@@ -41,6 +47,7 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
     private var isCurrentRest: Boolean = false
     private var isCurrentExercise: Boolean = false
 
+    @SuppressLint("QueryPermissionsNeeded")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +62,38 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             customDialogBackButton()
         }
 
+
+        skipButton.setOnClickListener {
+            restTimer!!.cancel()
+            currentExercisePosition++
+
+            exerciseList!![currentExercisePosition].setIsSelected(true)
+            exerciseAdapter!!.notifyDataSetChanged()
+            setUpExerciseView()
+        }
+
+        skipExerciseButton.setOnClickListener {
+            exerciseTimer!!.cancel()
+            if(currentExercisePosition < exerciseList?.size!!-1){
+                exerciseList!![currentExercisePosition].setIsSelected(false)
+                exerciseList!![currentExercisePosition].setIsCompleted(true)
+                exerciseAdapter!!.notifyDataSetChanged()
+                setUpRestView()
+            }else{
+                finish()
+                val intent : Intent = Intent(this@ExerciseActivity,FinishActivity::class.java)
+                startActivity(intent)
+
+            }
+        }
+
         tts = TextToSpeech(this,this)
 
         exerciseList = Constants.defaultExerciseList()
         setUpRestView()
-
         setUpExcerciseStatusRecyclerView()
+
+
     }
 
     override fun onDestroy() {
@@ -92,6 +125,7 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
                 tvExerciseTimer.text = (exerciseDuration.toInt()-exerciseProgress).toString()
             }
 
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun onFinish() {
                 if(currentExercisePosition < exerciseList?.size!!-1){
                     exerciseList!![currentExercisePosition].setIsSelected(false)
@@ -129,6 +163,7 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
         }.start()
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setUpRestView(){
         try {
             player = MediaPlayer.create(applicationContext,R.raw.press_start)
@@ -144,10 +179,11 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             restTimer!!.cancel()
             restProgress = 0
         }
+        restProgress = 0
         isCurrentRest = true
         isCurrentExercise = false
+        speakOut("Next Up ${exerciseList!![currentExercisePosition+1].getName()}")
         setRestProgressBar()
-
         tvUpcomingExercise.text = exerciseList!![currentExercisePosition+1].getName()
     }
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -166,8 +202,7 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
         isCurrentRest = false
         isCurrentExercise = true
         setExerciseProgressBar()
-
-        ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
+        Glide.with(this).load(exerciseList!![currentExercisePosition].getImage()).into(ivImage)
         tvExerciseName.text = exerciseList!![currentExercisePosition].getName()
     }
 
@@ -201,6 +236,15 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             exerciseTimer!!.cancel()
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun onResumeTimer(){
+        if(isCurrentRest){
+            setUpRestView()
+        }else{
+            setUpExerciseView()
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun customDialogBackButton(){
         val customDialog : Dialog = Dialog(this)
@@ -218,6 +262,15 @@ class ExerciseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             }
             customDialog.dismiss()
         }
+        customDialog.setCanceledOnTouchOutside(false)
+        customDialog.onBackPressed()
         customDialog.show()
     }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onBackPressed() {
+        customDialogBackButton()
+    }
+
 }
+

@@ -23,35 +23,35 @@
         android:layout_margin="10dp"
         android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/rbMetricUnits"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="0.50"
-            android:background="@drawable/units_radio_button_background"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="Know your BMI"
-            android:textColor="@drawable/drawable_units_tab_text_color_selector"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <RadioButton
+        android:id="@+id/rbMetricUnits"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_weight="0.50"
+        android:background="@drawable/units_radio_button_background"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="Know your BMI"
+        android:textColor="@drawable/drawable_units_tab_text_color_selector"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/bmiChart"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="0.50"
-            android:background="@drawable/units_radio_button_background"
-            android:button="@null"
-            android:checked="false"
-            android:gravity="center"
-            android:text="BMI Chart"
-            android:textColor="@drawable/drawable_units_tab_text_color_selector"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <RadioButton
+        android:id="@+id/bmiChart"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_weight="0.50"
+        android:background="@drawable/units_radio_button_background"
+        android:button="@null"
+        android:checked="false"
+        android:gravity="center"
+        android:text="BMI Chart"
+        android:textColor="@drawable/drawable_units_tab_text_color_selector"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-    </RadioGroup>
+</RadioGroup>
     <LinearLayout
         android:id="@+id/llRadioViews"
         android:layout_width="match_parent"
@@ -68,38 +68,38 @@
             android:visibility="visible"
             android:padding="10dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilMetricUnitWeight"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMetricUnitWeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etMetricUnitWeight"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="WEIGHT (in kg)"
-                        android:inputType="numberDecimal"
-                        android:textSize="16sp"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilMetricUnitHeight"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMetricUnitWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:hint="WEIGHT (in kg)"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etMetricUnitHeight"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="HEIGHT (in cm)"
-                        android:inputType="numberDecimal"
-                        android:textSize="16sp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMetricUnitHeight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etMetricUnitHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="HEIGHT (in cm)"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/llDiplayBMIResult"
@@ -159,20 +159,21 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
         </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llBMIChart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/rgUnits"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:padding="10dp">
-        <ImageView
-            android:id="@+id/bmi_chart_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bmi1"/>
+        <LinearLayout
+            android:id="@+id/llBMIChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rgUnits"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/bmi_chart_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bmi1"/>
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+
 
 </RelativeLayout>

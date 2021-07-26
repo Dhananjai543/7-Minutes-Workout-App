@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.a7minutesworkoutapp.R.layout.activity_bmi
 import kotlinx.android.synthetic.main.activity_bmi.*
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -27,7 +28,7 @@ class BMI_Activity : AppCompatActivity() {
     private lateinit var imageView: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bmi)
+        setContentView(activity_bmi)
 
         setSupportActionBar(toolbar_bmi_activity)
         val actionbar = supportActionBar
